@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { categorie } from 'src/models/categorie';
+import { CategoriesService } from 'src/services/categories/categories.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,13 +10,17 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
   navbarOpen = false;
+  categories : categorie[];
 
   toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;
   }
-  constructor(private router: Router) { }
+  constructor(private router: Router,private categoriesService : CategoriesService) { }
 
   ngOnInit(): void {
+    this.categoriesService.getCategories().subscribe((categories)=>{
+      console.log(categories);
+    })
   }
   onChange(event)
   {
@@ -24,4 +30,6 @@ export class NavbarComponent implements OnInit {
       this.router.navigate(['categorie',event.target.textContent]);
     }
   }
+
+
 }

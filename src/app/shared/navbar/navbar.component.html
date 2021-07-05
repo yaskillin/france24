@@ -12,12 +12,10 @@
         <li class="nav-item">
             <div class="row">
                 <div class="col">
-                  <div ngbDropdown class="d-inline-block" (click)="onChange($event)">
+                  <div ngbDropdown class="d-inline-block" *ngFor(let item in categories) (click)="onChange($event)">
                     <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Catégories</button>
                     <ul ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                      <li> <button  ngbDropdownItem>Économie</button> </li>
-                      <li> <button  ngbDropdownItem>Sports</button> </li>
-                      <li> <button  ngbDropdownItem>Culture</button> </li>
+                      <li> <button  ngbDropdownItem>item.name</button> </li>
                     </ul>
                   </div>
                 </div>
