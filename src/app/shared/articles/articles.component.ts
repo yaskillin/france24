@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HostListener } from "@angular/core";
+import { categorie } from 'src/models/categorie';
+import { News } from 'src/models/news';
+import { CategoriesService } from 'src/services/categories/categories.service';
 
 @Component({
   selector: 'app-articles',
@@ -7,10 +10,28 @@ import { HostListener } from "@angular/core";
   styleUrls: ['./articles.component.scss'],
 })
 export class ArticlesComponent implements OnInit {
-  public news: number[] = [0, 1, 2, 3, 4, 5];
+  @Input() categorie: categorie;
+  public news: News[] = [];
   public numbColumns : number=4;
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if(this.categorie!=null)
+    {
+      this.categorieService.getNewsByCategorie(this.categorie.id,1).subscribe(
+        (data)=>{
+          data.data.forEach((element) => {
+            var currentNew: News = {
+              title:element.title,
+              categorie:this.categorie.id,
+              description:element.description,
+              thumbnail_url:element.thumbnail_url
+            };
+            this.news.push(currentNew);
+          });
+      });
+    }
+    console.log(this.news);
+  }
 
   scrHeight:any;
   scrWidth:any;
@@ -34,7 +55,7 @@ export class ArticlesComponent implements OnInit {
   }
 
   // Constructor
-  constructor() {
+  constructor(private categorieService:CategoriesService) {
       this.getScreenSize();
   }
 }

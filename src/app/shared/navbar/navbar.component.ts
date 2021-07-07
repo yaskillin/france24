@@ -35,7 +35,6 @@ export class NavbarComponent implements OnInit {
 
   }
   onChange(categorie:categorie) {
-      console.log(categorie);
       this.router.navigate(['categorie', JSON.stringify(categorie)]);
   }
 }
