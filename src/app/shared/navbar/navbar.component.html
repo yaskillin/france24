@@ -15,7 +15,7 @@
                   <div ngbDropdown class="d-inline-block" >
                     <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Catégories</button>
                     <ul ngbDropdownMenu   aria-labelledby="dropdownBasic1">
-                      <li *ngFor="let item of categories"> <button  ngbDropdownItem (click)="onChange(item.name)">{{item.name}}</button> </li>
+                      <li *ngFor="let item of categories"> <button  ngbDropdownItem (click)="onChange(item)">{{item.name}}</button> </li>
                     </ul>
                   </div>
                 </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { categorie } from 'src/models/categorie';
 
 @Component({
   selector: 'app-categorie',
@@ -7,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./categorie.component.scss']
 })
 export class CategorieComponent implements OnInit {
-  public catName:string;
+  public categorie:categorie;
   constructor(private route:ActivatedRoute) {
 
    }
@@ -15,7 +16,7 @@ export class CategorieComponent implements OnInit {
   ngOnInit(): void {
 
     this.route.params.subscribe(params=>{
-      this.catName=params.name;
+      this.categorie=JSON.parse(params.categorie);
     });
   }
 

@@ -11,7 +11,7 @@ import { CategoriesService } from 'src/services/categories/categories.service';
 export class NavbarComponent implements OnInit {
   navbarOpen = false;
   categories: categorie[] = [];
-
+  nbrpages : number[]=[1,2];
   toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;
   }
@@ -21,19 +21,21 @@ export class NavbarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.categoriesService.getCategories().subscribe((data) => {
-      data.data.forEach((element) => {
-        var cat: categorie = {
-          name: element.name,
-          id: element.id,
-        };
-        this.categories.push(cat);
+    this.nbrpages.forEach(element => {
+      this.categoriesService.getCategories(element).subscribe((data) => {
+        data.data.forEach((element) => {
+          var cat: categorie = {
+            name: element.name,
+            id: element.id,
+          };
+          this.categories.push(cat);
+        });
       });
-      console.log(this.categories);
     });
+
   }
-  onChange(catName:string) {
-      console.log(catName);
-      this.router.navigate(['categorie', catName]);
+  onChange(categorie:categorie) {
+      console.log(categorie);
+      this.router.navigate(['categorie', JSON.stringify(categorie)]);
   }
 }

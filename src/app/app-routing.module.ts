@@ -13,7 +13,7 @@ const routes: Routes = [
       import('./shared/shared.module').then((m) => m.SharedModule),
   },
   {
-    path: 'categorie/:name',
+    path: 'categorie/:categorie',
     loadChildren: () =>
       import('./categorie/categorie.module').then((m) => m.CategorieModule),
   },

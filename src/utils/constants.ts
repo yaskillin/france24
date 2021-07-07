@@ -7,5 +7,5 @@ export enum Constants{
 
 }
 
-export const URL_CATEGORIES=`${environment.baseURL}api/categories`;
+export const URL_CATEGORIES=`${environment.baseURL}api/categories?page=`;
 export const URL_CATEGORIEBYID=`${environment.baseURL}api/categories/`;
