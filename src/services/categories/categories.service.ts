@@ -11,7 +11,7 @@ export class CategoriesService {
 
   constructor(private httpClient : HttpClient) { }
 
-  getCategories():Observable<categorie[]>{
-    return this.httpClient.get<categorie[]>(URL_CATEGORIES);
+  getCategories():Observable<any>{
+    return this.httpClient.get<any>(URL_CATEGORIES);
   }
 }

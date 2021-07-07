@@ -6,30 +6,34 @@ import { CategoriesService } from 'src/services/categories/categories.service';
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.scss']
+  styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
   navbarOpen = false;
-  categories : categorie[];
+  categories: categorie[] = [];
 
   toggleNavbar() {
     this.navbarOpen = !this.navbarOpen;
   }
-  constructor(private router: Router,private categoriesService : CategoriesService) { }
+  constructor(
+    private router: Router,
+    private categoriesService: CategoriesService
+  ) {}
 
   ngOnInit(): void {
-    this.categoriesService.getCategories().subscribe((categories)=>{
-      console.log(categories);
-    })
+    this.categoriesService.getCategories().subscribe((data) => {
+      data.data.forEach((element) => {
+        var cat: categorie = {
+          name: element.name,
+          id: element.id,
+        };
+        this.categories.push(cat);
+      });
+      console.log(this.categories);
+    });
   }
-  onChange(event)
-  {
-    if(event.target.textContent!="Catégories")
-    {
-      console.log(event);
-      this.router.navigate(['categorie',event.target.textContent]);
-    }
+  onChange(catName:string) {
+      console.log(catName);
+      this.router.navigate(['categorie', catName]);
   }
-
-
 }
