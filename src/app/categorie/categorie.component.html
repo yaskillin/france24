@@ -6,4 +6,9 @@
   </div>
 </div>
 
-<app-articles [categorie]='categorie'></app-articles>
+<app-articles [categorie]='categorie' [page]='currentPage'></app-articles>
+
+<div class="d-flex justify-content-center">
+  <ngb-pagination [collectionSize]="collectionSize" [page]="currentPage" (pageChange)="paginate($event)"
+    [directionLinks]="false"></ngb-pagination>
+</div>

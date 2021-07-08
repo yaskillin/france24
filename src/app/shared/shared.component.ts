@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { categorie } from 'src/models/categorie';
 import { Constants } from 'src/utils/constants';
 
 
@@ -10,6 +11,8 @@ import { Constants } from 'src/utils/constants';
 })
 export class SharedComponent implements OnInit {
   catName :string;
+  categorie :categorie;
+  categorie2 : categorie;
   constructor(private router: Router) { }
 
   ngOnInit(): void {
